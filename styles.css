@@ -20,7 +20,6 @@
     justify-content: center; /* Center items vertically */
     align-items: center; /* Center items horizontally */
     text-align: center; /* Center the text inside the container */
-    margin-left: 65vh;
     width: 100%; /* fill the width of the container */
     max-width: 100%; /* Prevent it from exceeding the container's width */
 }
@@ -86,7 +85,7 @@
 .vertical-line {
     width: 2px; /* Thickness of the line */
     background-color: green; /* Green color for the line */
-    margin-left: 50vh; /* Add spacing around the line */
+    margin-left: 37vh; /* Add spacing around the line */
 }
 
 
@@ -95,6 +94,127 @@ body {
     font-family: 'Inclusive Sans'; 
     
 
+}
+
+#allTimePieChart {
+    margin-bottom: 30px; /* Add spacing below the chart */
+}
+
+/* Style the chart container wrapper */
+.chart-container-wrapper {
+    display: flex;
+    justify-content: space-around; /* Space out the weekly comparison charts */
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    margin-top: 20px;
+}
+
+/* Style the form container */
+.form-container {
+    background-color: var(--md-sys-color-surface); /* Match the website's surface color */
+    border: 1px solid var(--md-sys-color-outline); /* Add a subtle border */
+    border-radius: 12px; /* Rounded corners */
+    padding: 20px; /* Add padding inside the form */
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); Add a subtle shadow */
+    max-width: 500px; /* Limit the form's width */
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+/* Style the form rows */
+.form-row {
+    display: flex;
+    flex-direction: column; /* Stack label and input vertically */
+    margin-bottom: 15px; /* Add spacing between rows */
+}
+
+/* Style the labels */
+.form-row label {
+    font-weight: bold; /* Make labels bold */
+    color: var(--md-sys-color-on-surface); /* Match the text color with the theme */
+    margin-bottom: 5px; /* Add spacing below the label */
+}
+
+/* Style the inputs */
+.form-row input,
+.form-row select {
+    padding: 10px; /* Add padding inside inputs */
+    border: 1px solid var(--md-sys-color-outline); /* Add a border */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px; /* Increase font size */
+    background-color: var(--md-sys-color-surface-container); /* Match the theme */
+    color: var(--md-sys-color-on-surface); /* Match the text color */
+    outline: none; /* Remove default outline */
+    transition: border-color 0.3s ease; /* Smooth transition for focus */
+}
+
+/* Change border color on focus */
+.form-row input:focus,
+.form-row select:focus {
+    border-color: var(--md-sys-color-primary); /* Highlight with primary color */
+}
+
+/* Style the buttons */
+button {
+    background-color: var(--md-sys-color-primary); /* Use primary color */
+    color: var(--md-sys-color-on-primary); /* Use contrasting text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Add padding */
+    font-size: 16px; /* Increase font size */
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+/* Change button color on hover */
+button:hover {
+    background-color: var(--md-sys-color-primary-container); /* Use primary container color */
+}
+
+/* Add spacing between buttons */
+button + button {
+    margin-left: 10px; /* Add spacing between buttons */
+}
+
+
+/* Style the container for the displayed items */
+#itemsDisplay {
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 10px;
+    background-color: var(--md-sys-color-surface-container); /* Match the theme */
+    border-radius: 12px; /* Rounded corners */
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); Subtle shadow */
+    list-style: none; /* Remove bullet points */
+}
+
+/* Style individual item cards */
+.item-card {
+    background-color: var(--md-sys-color-surface); /* Match the theme */
+    border: 1px solid var(--md-sys-color-outline); /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px;
+    margin-bottom: 10px; /* Add spacing between items */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+/* Add hover effect to item cards */
+.item-card:hover {
+    transform: translateY(-5px); /* Slightly lift the card */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+}
+
+/* Style the item details */
+.item-details h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--md-sys-color-primary); /* Use primary color for the item name */
+}
+
+.item-details p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: var(--md-sys-color-on-surface); /* Match the text color with the theme */
 }
 
 /* Ensure the page container uses flexbox for layout */

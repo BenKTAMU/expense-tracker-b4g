@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluate Spending</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <h2>Food Expense Tracker</h2>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="forms.html">Add Meal</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>All Time Spending</h1>
+
+        <div class="chart-container">
+            <canvas id="allTimePieChart"></canvas>
+        </div>
+        <h1>Comapre Week by Week Spending</h1>
+            <div class="form-row">
+                <label for="week1-filter">Select Week 1:</label>
+                <select id="week1-filter">
+                    <option value="7">Past 7 Days</option>
+                    <option value="14">Past 14 Days</option>
+                    <option value="all">All Time</option>
+                </select>
+            </div>
+    
+            <div class="form-row">
+                <label for="week2-filter">Select Week 2:</label>
+                <select id="week2-filter">
+                    <option value="7">Past 7 Days</option>
+                    <option value="14">Past 14 Days</option>
+                    <option value="all">All Time</option>
+                </select>
+            </div>
+    
+            <button id="compare-weeks">Compare Weeks</button>
+    
+            <div class="chart-container-wrapper">
+                <div class="chart-container">
+                    <canvas id="week1PieChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="week2PieChart"></canvas>
+                </div>
+            </div>
+        </main>
+
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="comparison_manager.js"></script>
+</body>
+</html>

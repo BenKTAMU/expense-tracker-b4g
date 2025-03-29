@@ -10,17 +10,15 @@
 <body>
     <div class="page-container">
         <aside class="sidebar">
-            <h2>Sidebar</h2>
+            <h2>Food Expense Tracker</h2>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="comparison.html">Compare Spending</a></li>
             </ul>
         </aside>
 
         <main class="main-content">
-            <h1>Forms</h1>
+            <h1>Enter Food Item</h1>
             <form class="form-container" id="expense-form">
                 <div id="entries-container">
                     <div class="entry-container">
@@ -30,7 +28,7 @@
                         </div>
                         <div class="form-row">
                             <label for="cost">Cost:</label>
-                            <input id="cost" type="number" name="cost[]" placeholder="Enter cost">
+                            <input id="cost" type="number" name="cost[]" placeholder="Enter cost" step="0.01" min="0">
                         </div>
                         <div class="form-row" style="margin-bottom: 40px;">
                             <label for="category">Category:</label>
@@ -59,13 +57,21 @@
         </main>
         <div class="vertical-line"></div>
 
-        <div id="itemsDisplay">Items</div>
+        <div id="itemsDisplay">
+            <h1>Items</h1>
+        </div>
 
        
 
 
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script src="form_manager.js"></script>
+
     
 </body>
 </html>

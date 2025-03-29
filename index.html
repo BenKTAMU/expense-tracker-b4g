@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build4Good Expense Tracker</title>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Expense Tracker</h1>
+   
+    <form class="form-container" id="expense-form">
+        <div id="entries-container">
+            <div class="entry-container">
+                <div class="form-row">
+                    <label for="item">Item:</label>
+                    <input id="item" type="text" name="item[]" placeholder="Enter item name">
+                </div>
+                <div class="form-row">
+                    <label for="cost">Cost:</label>
+                    <input id="cost" type="number" name="cost[]" placeholder="Enter cost">
+                </div>
+                <div class="form-row" style="margin-bottom: 40px;">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category[]" style="margin-left: 0px;">
+                        <option value="Takeout">Takeout</option>
+                        <option value="Homemade">Homemade</option>
+                        <option value="Drinks">Drinks</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date[]" placeholder="Select a date">
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <button type="button" id="add-entry">Add Another Entry</button>
+        </div>
+        <div class="form-row">
+            <button type="submit">Submit Expenses</button>
+        </div>
+    </form>
+
+    <button id="clear-expenses">Clear All Expenses</button>
+
+    <div id="itemsDisplay">
+    </div>
+
+    <div class="time-filter-container" style="margin-left: 0px;">
+        <label for ="time-filter">Filter by Time: </label>
+        <select id="time-filter">
+            <option value="3">Past 3 Days</option>
+            <option value="7">Past 7 Days</option>
+            <option value="14">Past 14 Days</option>
+            <option value="all">All Time</option>
+        </select>
+    </div>
+
+
+
+    <h2>Spending Distribution:</h2>
+    <div class="chart-container" >
+        <canvas id="categoryPieChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script src="expense_tracker.js"></script>
+    
+    
+</body>
+</html>

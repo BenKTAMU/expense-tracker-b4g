@@ -323,6 +323,13 @@ clear_button.addEventListener('click', function() {
     alert('All entries cleared!'); // Alert user
 });
 
+function clear(){
+    localStorage.clear(); // Clear localStorage
+    itemsList.innerHTML = ''; // Clear displayed list
+    alert('All entries cleared!'); // Alert user
+
+}
+
 // Load and display items when the page load
 document.addEventListener('DOMContentLoaded', () => {
     const items = loadItems();

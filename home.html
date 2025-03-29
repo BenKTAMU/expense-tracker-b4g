@@ -8,21 +8,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <div class="page-container">
         <aside class="sidebar">
             <h2>Food Expense Tracker</h2>
             <ul>
-                <li><a href="home.html">Home</a></li>
+                <li><a style="font-weight: bold; ">Home</a></li>
                 <li><a href="forms.html">Add Item</a></li>
                 <li><a href="comparison.html">Compare Spending</a></li>
+                <li class="red-item" ><a style="color: red; " href="#" onclick="clear() ">Clear</a></li>
             </ul>
         </aside>
         
         <div id="intro-text-container">
             <img src="clouds.svg" alt="Icon" class="responsive-svg">
             <h1>Welcome!</h1>
+            <p>Track your food expenses easily and efficiently. Add items, see where you're spending the most, and manage your budget with our user-friendly interface.</p>
             <div id="button-container">
-                <button id="start-button" >Get Started</button>
+                <button id="start-button" >Get Started!</button>
             </div>
 
             <script>

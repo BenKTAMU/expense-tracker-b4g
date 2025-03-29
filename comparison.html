@@ -6,6 +6,7 @@
     <title>Evaluate Spending</title>
     <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
     <div class="page-container">
@@ -14,35 +15,37 @@
             <ul>
                 <li><a href="home.html">Home</a></li>
                 <li><a href="forms.html">Add Meal</a></li>
+                <li><a style="font-weight: bold; ">Compare Spending</a></li>
+                <li class="red-item" ><a style="color: red; " href="#" onclick="clear() ">Clear</a></li>
             </ul>
         </aside>
 
-        <main class="main-content">
+    <main class="main-content">
             <h1>All Time Spending</h1>
 
         <div class="chart-container">
             <canvas id="allTimePieChart"></canvas>
         </div>
-        <h1>Comapre Week by Week Spending</h1>
+        <h1>Compare Week by Week Spending</h1>
             <div class="form-row">
-                <label for="week1-filter">Select Week 1:</label>
+                <label for="week1-filter">Select First Week to Compare:</label>
                 <select id="week1-filter">
                     <option value="7">Past 7 Days</option>
                     <option value="14">Past 14 Days</option>
+                    <option value="14">Past 21 Days</option>
                     <option value="all">All Time</option>
                 </select>
             </div>
     
             <div class="form-row">
-                <label for="week2-filter">Select Week 2:</label>
+                <label for="week2-filter">Select Second Week to Compare:</label>
                 <select id="week2-filter">
                     <option value="7">Past 7 Days</option>
                     <option value="14">Past 14 Days</option>
+                    <option value="14">Past 21 Days</option>
                     <option value="all">All Time</option>
                 </select>
             </div>
-    
-            <button id="compare-weeks">Compare Weeks</button>
     
             <div class="chart-container-wrapper">
                 <div class="chart-container">

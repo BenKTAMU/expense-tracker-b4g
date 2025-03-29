@@ -1,56 +1,9 @@
-document.getElementById('add-entry').addEventListener('click', function() {
-    const entriesContainer = document.getElementById('entries-container');
-
-    // Create a container for the new entry
-    const entryContainer = document.createElement('div');
-    entryContainer.className = 'entry-container';
-    entryContainer.style.marginBottom = '40px'; // Adds space between entries
-
-    // Create a new row for the item
-    const itemRow = document.createElement('div');
-    itemRow.className = 'form-row';
-    itemRow.innerHTML = `
-        <label for="item">Item:</label>
-        <input type="text" name="item[]" placeholder="Enter item name">
-    `;
-    entryContainer.appendChild(itemRow);
-
-    // Create a new row for the cost
-    const costRow = document.createElement('div');
-    costRow.className = 'form-row';
-    costRow.innerHTML = `
-        <label for="cost">Cost:</label>
-        <input type="number" name="cost[]" placeholder="Enter cost", min="0">
-    `;
-    entryContainer.appendChild(costRow);
-
-    const categoryRow = document.createElement('div');
-    categoryRow.className = 'form-row';
-    categoryRow.innerHTML = `
-                <label for="category">Category:</label>
-                <select id="category" name="category[]" style="margin-left: 0px;">
-                    <option value="Takeout">Takeout</option>
-                    <option value="Homemade">Homemade</option>
-                    <option value="Drinks">Drinks</option>
-                    <option value="Snacks">Snacks</option>
-                    <option value="Other">Other</option>
-                </select>
-    `;
-
-    entryContainer.appendChild(categoryRow);
-
-    const dateRow = document.createElement('div');
-    dateRow.className = 'form-row';
-    dateRow.innerHTML = `
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date[]" placeholder="Select a date">
-    `;
-
-    entryContainer.appendChild(dateRow);
-
-    // Append the entry container to the entries container
-    entriesContainer.appendChild(entryContainer);
-});
+function setDefaultDate() {
+    const dateInput = document.getElementById('date'); // Get the date input field
+    const today = new Date(); // Get today's date
+    const formattedDate = today.toISOString().split('T')[0]; // Format the date as YYYY-MM-DD
+    dateInput.value = formattedDate; // Set the value of the date input
+}
 
 
 // Example inside your form submission handler
@@ -186,7 +139,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const items = loadItems();
     displayItems(items);
     //renderPieChart(items); // Render the pie chart with loaded items
+    setDefaultDate();
 });
+
+
+function clear(){
+    localStorage.clear(); // Clear localStorage
+    itemsList.innerHTML = ''; // Clear displayed list
+    alert('All entries cleared!'); // Alert user
+
+}
+
+
 
 function loadItems() {
     const storedItems = localStorage.getItem('shoppingListData');

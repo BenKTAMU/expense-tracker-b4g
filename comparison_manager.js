@@ -13,6 +13,8 @@ let allTimePieChart = null; // Variable to hold the all-time chart instance
 
 const timeFilter = document.getElementById('time-filter'); // Time filter dropdown
 
+
+
 function renderAllTimeChart() {
     const items = loadItems(); // Load all items from localStorage
     allTimePieChart = renderComparisonPieChart(items, allTimeChartCanvas, allTimePieChart, 'All Time Spending');
@@ -41,21 +43,6 @@ function updateComparisonCharts() {
     week1PieChart = renderComparisonPieChart(week1Items, week1ChartCanvas, week1PieChart, 'Week 1 Spending');
     week2PieChart = renderComparisonPieChart(week2Items, week2ChartCanvas, week2PieChart, 'Week 2 Spending');
 }
-
-compareButton.addEventListener('click', function () {
-    const week1Value = week1Filter.value;
-    const week2Value = week2Filter.value;
-
-    const items = loadItems(); // Load all items from localStorage
-
-    // Filter items for each week
-    const week1Items = filterItemsByDate(items, week1Value);
-    const week2Items = filterItemsByDate(items, week2Value);
-
-    // Render the pie charts
-    week1PieChart = renderComparisonPieChart(week1Items, week1ChartCanvas, week1PieChart, 'Week 1 Spending');
-    week2PieChart = renderComparisonPieChart(week2Items, week2ChartCanvas, week2PieChart, 'Week 2 Spending');
-});
 
 
 
@@ -134,7 +121,7 @@ function renderComparisonPieChart(filteredItems, canvas, chartInstance, title) {
                     label: 'Cost',
                     data: dataValues,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(0, 75, 72,0.7)',
                         'rgba(54, 162, 235, 0.7)',
                         'rgba(255, 206, 86, 0.7)',
                         'rgba(75, 192, 192, 0.7)',
@@ -142,7 +129,7 @@ function renderComparisonPieChart(filteredItems, canvas, chartInstance, title) {
                         'rgba(255, 159, 64, 0.7)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
+                        'rgba(0, 75, 72,0.7)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
@@ -180,6 +167,13 @@ function renderComparisonPieChart(filteredItems, canvas, chartInstance, title) {
     return newChartInstance;
 }
 
+
+function clear(){
+    localStorage.clear(); // Clear localStorage
+    itemsList.innerHTML = ''; // Clear displayed list
+    alert('All entries cleared!'); // Alert user
+
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {

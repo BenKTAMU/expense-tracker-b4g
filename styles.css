@@ -4,13 +4,46 @@
     max-width: 400px;
     /* margin: 0 auto; */
     margin-left: 0px;
+    
 }
 
 .form-row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    
 }
+
+#intro-text-container {
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center the text inside the container */
+    margin-left: 65vh;
+    width: 100%; /* fill the width of the container */
+    max-width: 100%; /* Prevent it from exceeding the container's width */
+}
+
+#button-container{
+    margin-top: 20px;
+}
+
+#start-button{
+    background-color: #CEC6B0; /* background */
+    border: none; /* Remove borders */
+    color: black; /* White text */
+    padding: 15px 32px; /* Some padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Get the block element to behave like an inline element */
+    font-size: 16px; /* Increase font size */
+    margin: 4px 2px; /* Add some margin */
+    cursor: pointer; /* Pointer/hand icon on hover */
+    border-radius: 12px; /* Rounded corners */
+}
+
+
 
 
 .form-row label {
@@ -50,8 +83,67 @@
     margin: 10px; /* Add some space around each chart */
 }
 
+.vertical-line {
+    width: 2px; /* Thickness of the line */
+    background-color: green; /* Green color for the line */
+    margin-left: 50vh; /* Add spacing around the line */
+}
 
-body { font-family: sans-serif; }
+
+body { 
+    margin: 0;
+    font-family: 'Inclusive Sans'; 
+    
+
+}
+
+/* Ensure the page container uses flexbox for layout */
+.page-container {
+    display: flex; /* Use flexbox to arrange sidebar and main content horizontally */
+    min-height: 100vh; /* Make the container take up the full height of the viewport */
+    background-color: rgb(246 252 235);
+}
+
+/* Style the sidebar */
+.sidebar {
+    width: 250px; /* Set a fixed width for the sidebar */
+    background-color: #F6E7AC; /* Light gray background */
+    padding: 20px; /* Add padding inside the sidebar */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Style the sidebar links */
+.sidebar ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+.sidebar li a {
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Dark text color */
+    padding: 10px 15px; /* Add padding to links */
+    display: block; /* Make links take up the full width */
+}
+
+.sidebar li a:hover {
+    background-color: #ddd; /* Light gray background on hover */
+    color: #000; /* Black text color on hover */
+}
+
+.responsive-svg {
+    width: 100%; /* Make the SVG fill the width of the container */
+    height: auto; /* Maintain the aspect ratio */
+    display: block; /* Remove inline spacing below the image */
+    max-width: 100%; /* Prevent it from exceeding the container's width */
+}
+
+/* Style the main content */
+.main-content {
+    /* flex: 1; Allow the main content to take up the remaining space */
+    padding: 20px; /* Add padding inside the main content */
+    overflow: auto; /* Allow scrolling if content overflows */
+}
+
 form, h2 { margin-bottom: 10px; }
 button { margin-left: 5px; }
 li { margin-bottom: 5px; }

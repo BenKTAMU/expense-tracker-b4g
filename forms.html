@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+        <aside class="sidebar">
+            <h2>Sidebar</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Forms</h1>
+            <form class="form-container" id="expense-form">
+                <div id="entries-container">
+                    <div class="entry-container">
+                        <div class="form-row">
+                            <label for="item">Item:</label>
+                            <input id="item" type="text" name="item[]" placeholder="Enter item name">
+                        </div>
+                        <div class="form-row">
+                            <label for="cost">Cost:</label>
+                            <input id="cost" type="number" name="cost[]" placeholder="Enter cost">
+                        </div>
+                        <div class="form-row" style="margin-bottom: 40px;">
+                            <label for="category">Category:</label>
+                            <select id="category" name="category[]" style="margin-left: 0px;">
+                                <option value="Takeout">Takeout</option>
+                                <option value="Homemade">Homemade</option>
+                                <option value="Drinks">Drinks</option>
+                                <option value="Snacks">Snacks</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="date">Date:</label>
+                            <input type="date" id="date" name="date[]" placeholder="Select a date">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <button type="button" id="add-entry">Add Another Entry</button>
+                </div>
+                <div class="form-row">
+                    <button type="submit">Submit Expenses</button>
+                </div>
+            </form>
+            
+        </main>
+        <div class="vertical-line"></div>
+
+        <div id="itemsDisplay">Items</div>
+
+       
+
+
+
+    </div>
+    
+</body>
+</html>

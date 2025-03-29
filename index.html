@@ -62,10 +62,42 @@
 
 
 
-    <h2>Spending Distribution:</h2>
-    <div class="chart-container" >
-        <canvas id="categoryPieChart"></canvas>
+<h2>Compare Spending Distribution:</h2>
+
+<div class="form-row">
+    <label for="week1-filter">Select Week 1:</label>
+    <select id="week1-filter">
+        <option value="7">Past 7 Days</option>
+        <option value="14">Past 14 Days</option>
+        <option value="all">All Time</option>
+    </select>
+</div>
+
+<div class="form-row">
+    <label for="week2-filter">Select Week 2:</label>
+    <select id="week2-filter">
+        <option value="7">Past 7 Days</option>
+        <option value="14">Past 14 Days</option>
+        <option value="all">All Time</option>
+    </select>
+</div>
+
+<button id="compare-weeks">Compare Weeks</button>
+
+
+
+<div class="chart-container-wrapper">
+
+    <div class="chart-container">
+        <canvas id="week1PieChart"></canvas>
     </div>
+    <div class="chart-container">
+        <canvas id="week2PieChart"></canvas>
+    </div>
+</div>
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 

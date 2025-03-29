@@ -67,6 +67,30 @@ const categoryChartCanvas = document.getElementById('categoryPieChart');
 const storageKey = 'shoppingListData';
 let categoryPieChart = null; // Variable to hold the chart instance
 
+const week1Filter = document.getElementById('week1-filter');
+const week2Filter = document.getElementById('week2-filter');
+const compareButton = document.getElementById('compare-weeks');
+const week1ChartCanvas = document.getElementById('week1PieChart');
+const week2ChartCanvas = document.getElementById('week2PieChart');
+let week1PieChart = null;
+let week2PieChart = null;
+
+
+compareButton.addEventListener('click', function () {
+    const week1Value = week1Filter.value;
+    const week2Value = week2Filter.value;
+
+    const items = loadItems(); // Load all items from localStorage
+
+    // Filter items for each week
+    const week1Items = filterItemsByDate(items, week1Value);
+    const week2Items = filterItemsByDate(items, week2Value);
+
+    // Render the pie charts
+    week1PieChart = renderComparisonPieChart(week1Items, week1ChartCanvas, week1PieChart, 'Week 1 Spending');
+    week2PieChart = renderComparisonPieChart(week2Items, week2ChartCanvas, week2PieChart, 'Week 2 Spending');
+});
+
 
 timeFilter.addEventListener('change', function () {
     const selectedValue = timeFilter.value; // Get the selected time period
@@ -145,34 +169,61 @@ form.addEventListener('submit', function(event) {
     displayItems(allItems);
 
     // Clear the form
-    entriesContainer.innerHTML = `           
-                <div id = "entry-container">
-                <div class="form-row">
-                    <label for="item">Item:</label>
-                    <input type="text" id="itemName" name="item[]" placeholder="Enter item name">
-                </div>
-                <div class="form-row" >
-                    <label for="cost">Cost:</label>
-                    <input type="number" id="itemCost" name="cost[]" placeholder="Enter cost">
-                </div>
-                <div class="form-row" style="margin-bottom: 40px;">
-                    <label for="category">Category:</label>
-                    <select id="itemCategory" name="category[]" style="margin-left: 0px;">
-                        <option value="Takeout">Takeout</option>
-                        <option value="Homemade">Homemade</option>
-                        <option value="Drinks">Drinks</option>
-                        <option value="Snacks">Snacks</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-row">
-                    <label for="date">Date:</label>
-                    <input type="date" id="date" name="date[]" placeholder="Select a date">
-                </div>
-            </div>`; // Remove all dynamically added entries
+    // Clear all dynamically added entries and repopulate with one default entry
+    entriesContainer.innerHTML = ''; // Clear all entries
+
+    // Create a single default entry
+    const defaultEntry = document.createElement('div');
+    defaultEntry.className = 'entry-container';
+    defaultEntry.style.marginBottom = '40px'; // Adds space between entries
+
+    // Add the default "Item" field
+    const itemRow = document.createElement('div');
+    itemRow.className = 'form-row';
+    itemRow.innerHTML = `
+        <label for="item">Item:</label>
+        <input type="text" name="item[]" placeholder="Enter item name">
+    `;
+    defaultEntry.appendChild(itemRow);
+
+    // Add the default "Cost" field
+    const costRow = document.createElement('div');
+    costRow.className = 'form-row';
+    costRow.innerHTML = `
+        <label for="cost">Cost:</label>
+        <input type="number" name="cost[]" placeholder="Enter cost">
+    `;
+    defaultEntry.appendChild(costRow);
+
+    // Add the default "Category" dropdown
+    const categoryRow = document.createElement('div');
+    categoryRow.className = 'form-row';
+    categoryRow.innerHTML = `
+        <label for="category">Category:</label>
+        <select name="category[]" style="margin-left: 0px;">
+            <option value="Takeout">Takeout</option>
+            <option value="Homemade">Homemade</option>
+            <option value="Drinks">Drinks</option>
+            <option value="Snacks">Snacks</option>
+            <option value="Other">Other</option>
+        </select>
+    `;
+    defaultEntry.appendChild(categoryRow);
+
+    // Add the default "Date" field
+    const dateRow = document.createElement('div');
+    dateRow.className = 'form-row';
+    dateRow.innerHTML = `
+        <label for="date">Date:</label>
+        <input type="date" name="date[]" placeholder="Select a date">
+    `;
+    defaultEntry.appendChild(dateRow);
+
+    // Append the default entry back to the entries container
+    entriesContainer.appendChild(defaultEntry);
     alert('Expenses submitted successfully!');
 
-    renderPieChart(items); // Re-render the pie chart with updated items
+    //renderPieChart(allItems); // Re-render the pie chart with updated items
 });
 
 
@@ -195,96 +246,76 @@ function calculateCategoryTotals(items) {
 
 
 
-function renderPieChart(filteredItems) {
+
+function renderComparisonPieChart(filteredItems, canvas, chartInstance, title) {
     const aggregatedData = calculateCategoryTotals(filteredItems);
 
-    const labels = Object.keys(aggregatedData);    // ['Groceries', 'Bills']
+    const labels = Object.keys(aggregatedData); // ['Takeout', 'Drinks']
     const dataValues = Object.values(aggregatedData); // [50.50, 120.00]
 
-
     // Destroy previous chart instance if it exists to prevent conflicts
-    if (categoryPieChart) {
-        categoryPieChart.destroy();
+    if (chartInstance) {
+        chartInstance.destroy();
     }
 
-    // Only render chart if there's data
-    if (labels.length > 0 && categoryChartCanvas) {
-        const ctx = categoryChartCanvas.getContext('2d');
-        categoryPieChart = new Chart(ctx, {
+    let newChartInstance = null; // Variable to hold the new instance
+
+    if (labels.length > 0 && canvas) {
+        const ctx = canvas.getContext('2d');
+        // Assign the new chart to the variable we will return
+        newChartInstance = new Chart(ctx, {
             type: 'pie',
             data: {
                 labels: labels,
                 datasets: [{
                     label: 'Cost',
                     data: dataValues,
-                    backgroundColor: [ // Add more colors if you expect many categories
+                    backgroundColor: [
                         'rgba(255, 99, 132, 0.7)',
                         'rgba(54, 162, 235, 0.7)',
                         'rgba(255, 206, 86, 0.7)',
                         'rgba(75, 192, 192, 0.7)',
                         'rgba(153, 102, 255, 0.7)',
-                        'rgba(255, 159, 64, 0.7)',
-                        'rgba(199, 199, 199, 0.7)',
-                        'rgba(83, 102, 255, 0.7)',
-                        'rgba(100, 255, 100, 0.7)'
+                        'rgba(255, 159, 64, 0.7)'
                     ],
-                    borderColor: [ // Optional border colors
+                    borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
                         'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(199, 199, 199, 1)',
-                         'rgba(83, 102, 255, 1)',
-                         'rgba(100, 255, 100, 1)'
+                        'rgba(255, 159, 64, 1)'
                     ],
                     borderWidth: 1,
-                    hoverOffset: 4 // Slightly enlarge slice on hover
+                    hoverOffset: 4
                 }]
             },
             options: {
-                responsive: true, // Make chart resize with container
-                maintainAspectRatio: false, // Allow chart to fill container height/width better
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: 'top', // Display legend at the top
+                        position: 'top',
                     },
                     title: {
                         display: true,
-                        text: 'Spending Distribution by Category'
-                    },
-                    tooltip: { // Customize tooltips
-                         callbacks: {
-                              label: function(context) {
-                                   let label = context.label || '';
-                                   if (label) {
-                                       label += ': ';
-                                   }
-                                   if (context.parsed !== null) {
-                                       // Format as currency
-                                       label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed);
-                                   }
-                                   // Calculate percentage
-                                   const total = context.dataset.data.reduce((acc, value) => acc + value, 0);
-                                   const percentage = ((context.parsed / total) * 100).toFixed(1) + '%';
-                                   label += ` (${percentage})`;
-                                   return label;
-                                }
-                         }
+                        text: title
                     }
                 }
             }
         });
-    } else if (categoryChartCanvas) {
-       // Optional: Clear canvas or show message if no data
-       const ctx = categoryChartCanvas.getContext('2d');
-       ctx.clearRect(0, 0, categoryChartCanvas.width, categoryChartCanvas.height);
-       // ctx.textAlign = 'center';
-       // ctx.fillText('No data to display', categoryChartCanvas.width / 2, categoryChartCanvas.height / 2);
+    } else if (canvas) {
+        // Optional: Clear canvas or show message if no data
+        const ctx = canvas.getContext('2d');
+        // Potential typo fix: Use canvas.width/height unless chartCanvas is defined elsewhere
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // No new chart created, ensure null is returned
+        newChartInstance = null;
     }
-}
 
+    // Return the newly created instance (or null if none was created)
+    return newChartInstance;
+}
 
 clear_button.addEventListener('click', function() {
     localStorage.clear(); // Clear localStorage
@@ -296,5 +327,5 @@ clear_button.addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', () => {
     const items = loadItems();
     displayItems(items);
-    renderPieChart(items); // Render the pie chart with loaded items
+    //renderPieChart(items); // Render the pie chart with loaded items
 });
